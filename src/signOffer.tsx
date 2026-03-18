@@ -59,7 +59,7 @@ function SignOffer() {
     element.style.maxHeight = 'none';
     element.style.overflowY = 'visible';
 
-    // Wait a tick for the DOM to lay out properly
+
     await new Promise(resolve => setTimeout(resolve, 100));
 
     try {
