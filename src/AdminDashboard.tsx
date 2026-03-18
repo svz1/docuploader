@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { db } from "./firebase";
 import { collection, addDoc, onSnapshot } from "firebase/firestore";
 
@@ -139,13 +140,12 @@ function AdminDashboard() {
                   </td>
 
                   <td className="admin-actions-cell">
-                    <a
-                      href={`/form?studentId=${student.id}`}
-                      target="_blank"
+                    <Link
+                      to={`/form?studentId=${student.id}`}
                       className="admin-view-profile-btn"
                     >
                       View Profile
-                    </a>
+                    </Link>
 
                     <button className="admin-download-all-btn">
                       Download All Docs
