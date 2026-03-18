@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditional Offer Letter – Welfare Academy</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+    :root {
+      --navy: #1a2d5a;
+      --red: #b22222;
+      --blue: #1e4a8a;
+      --light-blue: #dce8f8;
+      --gray-bg: #f2f3f5;
+      --border: #c8cdd6;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --page-width: 794px;
+      --page-height: 1123px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #9aa0aa;
+      padding: 32px 20px;
+    }
+
+    /* ── Page container ── */
+    .page {
+      width: var(--page-width);
+      min-height: var(--page-height);
+      background: #fff;
+      margin: 0 auto 28px auto;
+      position: relative;
+      padding: 56px 64px 56px 64px;
+      box-shadow: 0 3px 18px rgba(0, 0, 0, 0.18);
+      page-break-after: always;
+    }
+
+    /* ── Header bar on inner pages ── */
+    .page-header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-logo .shield {
+      width: 38px;
+      height: 44px;
+    }
+
+    .header-logo-text {
+      text-align: left;
+      line-height: 1.1;
+    }
+
+    .header-logo-text .welfare {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      font-family: 'EB Garamond', serif;
+    }
+
+    .header-logo-text .academy {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'EB Garamond', serif;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 64px;
+      right: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+
+    /* ── Cover page ── */
+    .cover-page {
+      background: var(--gray-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .cover-logo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 56px;
+    }
+
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cover-logo .shield {
+      width: 66px;
+      height: 76px;
+    }
+
+    .cover-logo-name {
+      line-height: 1.1;
+    }
+
+    .cover-logo-name .welfare-big {
+      font-family: 'EB Garamond', serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .cover-logo-name .academy-big {
+      font-family: 'EB Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 22px;
+      line-height: 1.1;
+    }
+
+    .cover-subtitle {
+      font-size: 18px;
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 48px;
+      font-family: 'EB Garamond', serif;
+    }
+
+    .cover-student-label {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .cover-student-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .cover-address {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .cover-datestamp {
+      position: absolute;
+      bottom: 56px;
+      left: 64px;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    /* ── Page number (bottom-right) ── */
+    .page-num {
+      position: absolute;
+      bottom: 24px;
+      right: 64px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Cover page number */
+    .cover-page-num {
+      position: absolute;
+      bottom: 24px;
+      right: 64px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── Section headings ── */
+    h2.section {
+      font-family: 'EB Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 0 0 18px 0;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--blue);
+    }
+
+    h2.numbered {
+      font-family: 'EB Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 24px 0 14px 0;
+    }
+
+    h3.sub {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 18px 0 8px 0;
+    }
+
+    h4.mini {
+      font-size: 13.5px;
+      font-weight: 700;
+      margin: 14px 0 6px 0;
+    }
+
+    /* ── Body text ── */
+    p {
+      margin-bottom: 11px;
+      text-align: justify;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    /* ── Clause blocks ── */
+    .clause {
+      margin-bottom: 14px;
+    }
+
+    .cid {
+      font-weight: 700;
+    }
+
+    /* ── Conditions list (arrows) ── */
+    .cond-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    .cond-list>li {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+
+    .cond-list>li::before {
+      content: "➢";
+      color: var(--blue);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Sub-list (circles) ── */
+    .sub-list {
+      list-style: none;
+      padding-left: 28px;
+      margin: 6px 0 6px 0;
+    }
+
+    .sub-list>li {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 5px;
+      align-items: flex-start;
+    }
+
+    .sub-list>li::before {
+      content: "○";
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    /* ── Bullet lists ── */
+    .bul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bul>li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+
+    .bul>li::before {
+      content: "●";
+      color: var(--text);
+      flex-shrink: 0;
+      font-size: 9px;
+      margin-top: 5px;
+    }
+
+    /* sub-bullet */
+    .sub-bul {
+      list-style: none;
+      padding-left: 22px;
+      margin: 6px 0;
+    }
+
+    .sub-bul>li {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 5px;
+      align-items: flex-start;
+    }
+
+    .sub-bul>li::before {
+      content: "○";
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    /* roman numeral style sub-list */
+    .roman-list {
+      list-style: none;
+      padding-left: 20px;
+      margin: 6px 0;
+    }
+
+    .roman-list>li {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    hr.div {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 22px 0;
+    }
+
+    /* ── Info box ── */
+    .info-box {
+      background: var(--light-blue);
+      border-left: 3.5px solid var(--blue);
+      padding: 10px 14px;
+      margin: 10px 0;
+      border-radius: 0 3px 3px 0;
+      font-size: 13px;
+    }
+
+    /* ── Payment table ── */
+    .pay-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 13px;
+    }
+
+    .pay-table th {
+      background: var(--light-blue);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      border: 1.5px solid var(--border);
+    }
+
+    .pay-table td {
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      vertical-align: top;
+    }
+
+    .pay-table .check-col {
+      width: 140px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .checkbox {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--text);
+      border-radius: 1px;
+      vertical-align: middle;
+    }
+
+    .other-field {
+      display: block;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .field-label {
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* ── Signature block ── */
+    .sig-block {
+      margin-top: 32px;
+    }
+
+    .sig-row {
+      display: flex;
+      gap: 48px;
+      margin-top: 16px;
+    }
+
+    .sig-field {
+      flex: 1;
+    }
+
+    .sig-field label {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .sig-line {
+      border-bottom: 1.5px solid var(--text);
+      height: 32px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        margin: 0;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════ PAGE 1 – COVER ═══════════════ -->
+  <div class="page cover-page">
+    <div class="cover-logo-wrap">
+      <div class="cover-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 100px; object-fit: contain;" />
+      </div>
+    </div>
+
+    <div class="cover-title">Conditional Offer Letter</div>
+    <div class="cover-subtitle">NCFE Cache– Level 3 Diploma in Adult Care</div>
+
+    <div class="cover-student-label">Student Name: <span class="dynamic-student-name">{{NAME}}</span></div>
+    <div class="cover-student-name">Jenson Thomas</div>
+    <div class="cover-address">
+      Director<br>
+      Welfare Health and Safety Academy Ltd<br>
+      60 Park Street<br>
+      Luton, Near Bedfordshire University<br>
+      LU1 3ET
+    </div>
+
+    <div class="cover-datestamp">Offer letter generated on {{DATE}} — {{PAYMENT_PLAN}}</div>
+    <div class="cover-page-num">1</div>
+  </div>
+
+  <!-- ═══════════════ PAGE 2 – CONDITIONS ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <h2 class="section">Conditions to be Met</h2>
+
+    <ul class="cond-list">
+      <li>
+        <span>
+          <strong>Skill exam to be completed</strong>
+          <ul class="sub-list">
+            <li><span>Attempt the assessment by login to the portal through a personal email address</span></li>
+            <li><span>Assessment to be completed within 30 minutes</span></li>
+            <li><span>The use of calculators is acceptable</span></li>
+            <li><span>Link for the assessment:<br><a
+                  href="https://welfarehs.co.uk/exam_skilltest.html">https://welfarehs.co.uk/exam_skilltest.html</a></span>
+            </li>
+          </ul>
+        </span>
+      </li>
+      <li><span>An initial amount of fee is to be paid online</span></li>
+      <li><span>Any Conditions or changes made to the condition will be updated in Welfare Academy's Website at <a
+            href="https://welfarehs.co.uk/level-3-tnc/">https://welfarehs.co.uk/level-3-tnc/</a></span></li>
+    </ul>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>2</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 3 – TERMS 1.1–1.4 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <h2 class="section">Student Enrolment Terms and Conditions</h2>
+    <h2 class="numbered">1. &nbsp; Effect Of The Terms</h2>
+
+    <div class="clause">
+      <p><span class="cid">1.1.</span> These terms &amp; conditions (the Terms) apply to all students enrolling with
+        Welfare Academy either by receiving the enrollment letter or by joining in the initial class, which comes first.
+        Together with the other documents to which they refer, these Terms form the contract between Welfare Academy and
+        you, and the conditions that apply to your programme of study at Welfare Academy. If there is any inconsistency
+        between these Terms and any other document generated by or on behalf of Welfare Academy, these Terms shall
+        prevail. However, you will take special notice that in the event of any inconsistency between these terms and
+        the terms of the validating partner University, the provisions of the validating partner's terms shall prevail.
+        (24/04/2025)</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">1.2.</span> These Terms together with the matters referred to in any document setting out the
+        offer made to you (the Offer) (directly to you by Welfare Academy and on the enrolment form or online
+        application) form the entire agreement and understanding between you and Welfare Academy about the Course and
+        replace any other written or verbal promises, undertakings or representations.</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">1.3.</span> No contract will exist between you and Welfare Academy until you formally reply
+        to Welfare Academy accepting an offer, either by signing an Agreement or accepting the offer through the online
+        application system or by joining the initial class as appropriate to your method of application.</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">1.4.</span> By signing these terms and conditions and accepting an offer you formally agree
+      </p>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>3</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 4 – TERMS 1.4 cont–1.7 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>to:</p>
+    <ul class="sub-list" style="margin-top:10px;">
+      <li><span><strong>1.4.1.</strong> Follow Welfare Academy's and its validating bodies' rules, regulations and
+          policies;</span></li>
+      <li><span><strong>1.4.2.</strong> ensure payment of all fees due by the dates specified by Welfare Academy, unless
+          previously agreed otherwise in writing by the Welfare Academy Finance Office (<a
+            href="mailto:finance@welfarehs.co.uk">finance@welfarehs.co.uk</a>); (24/04/2025)</span></li>
+      <li><span><strong>1.4.3.</strong> ensure that Welfare Academy has the correct personal and contact details for you
+          at any given time;</span></li>
+      <li><span><strong>1.4.4.</strong> where applicable, provide proof of your immigration status</span></li>
+    </ul>
+
+    <div class="clause" style="margin-top:16px;">
+      <p><span class="cid">1.5.</span> All applications must be signed by the student in person. All applications made
+        online will be assumed to be made by the student in person. Under no circumstances will applications made for an
+        individual by a third party (e.g. an agent or a relative) be accepted.</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">1.6.</span> Welfare Academy reserves the right to request any student to apply for a Basic
+        Disclosure (or where required for certain courses, an Enhanced Disclosure) check either before or after the
+        enrolment. Welfare Academy shall be entitled to refuse to enrol you or to require you to stop studying on the
+        course and to leave your course immediately if you fail to comply. You will be required to pay the cost of any
+        disclosure check required, which will not be refundable in the event of the check revealing convictions that
+        prevent enrolment in your course.</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">1.7.</span> Welfare Academy's admissions process is subject to the Consumer Contracts
+        (Information, Cancellation and Additional Charges) Regulations 2013; if you have applied through our online
+        enrolment form or have accepted the offer by post or</p>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>4</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 5 – TERMS 1.7 cont – Section 2 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>email after contacting our admissions department by telephone or email only, your Acceptance of these terms will
+      be treated as a 'distance contract'.</p>
+
+    <div class="clause">
+      <p><span class="cid">1.8.</span> All the students should pay the complete fee and the assessment within the
+        academic year.</p>
+      <p>In any case, if a student fails to complete the fee payment or submission of the assessment, Welfare Academy
+        has the authority to cancel the student account from the registry.</p>
+    </div>
+
+    <h2 class="numbered">2. Welfare Academy's Obligations</h2>
+
+    <div class="clause">
+      <p><span class="cid">2.1.</span> Welfare Academy shall:</p>
+      <ul class="sub-list" style="margin-top:8px;">
+        <li><span><strong>2.1.1.</strong> Provide you with the course and tuition with reasonable care and skill in the
+            way described in the relevant course specification;</span></li>
+        <li><span><strong>2.1.2.</strong> Make available to you such learning support facilities and services as are
+            reasonably necessary for the completion of the course. Welfare Academy shall be able to make variations from
+            time to time to the services and facilities provided, and you agree that changes to such support facilities
+            and services shall not be deemed to be substantial changes to this contract.</span></li>
+      </ul>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">2.2.</span> Welfare Academy will take all reasonable steps to ensure that study programmes
+        are delivered in full and meet the expectations students have when they accept an offer to study with the
+        Academy. Most importantly it will ensure that students who successfully engage with their studies are not
+        prevented from achieving the qualification due to the reasons:</p>
+      <div class="roman-list">
+        <div>i. Changes to a programme's content,</div>
+        <div>ii. &nbsp;Changes to, or loss of access to learning resources or campus facilities,</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>5</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 6 – Section 2 cont + Section 3 start ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <div class="roman-list" style="margin-bottom:10px;">
+      <div>iii. Changes to awarding body arrangements,</div>
+      <div>iv. &nbsp;'Teaching-out' of programmes for which there will be no further recruitment.</div>
+    </div>
+    <p>Welfare Academy's Student Protection Plan sets out how the Academy will ensure that its programmes are delivered
+      as closely aligned as is reasonably possible to that which is described in its promotional materials and
+      pre-contract information.</p>
+
+    <h2 class="numbered">3. &nbsp; Delegates' Obligations</h2>
+
+    <div class="clause">
+      <p><span class="cid">3.1.</span> You are required to comply with your obligations under these Terms and to:</p>
+
+      <p style="margin-top:12px;"><span class="cid">3.1.1</span> <strong>Attendance is mandatory</strong> – To stay on
+        track academically, you must engage with your programme regularly. We need a detailed email with the reason for
+        your regular absence (Email us at <a
+          href="mailto:learningsupport@welfarehs.co.uk">learningsupport@welfarehs.co.uk</a>). Failure to confirm your
+        engagement and reach satisfactory attendance may result in withdrawal from your course. Any medical/sick reasons
+        must be presented with the proper medical evidence. It is expected, and it is a key requirement for students
+        that accept a place on their selected course, to attend their scheduled classes on time and on brief.
+        Specifically, students are expected to arrive for their classes on time, stay for the duration, participate in
+        activities enthusiastically and engage in their classes according to the requirements of the module and the
+        lecturer. (24/04/2025)</p>
+
+      <div class="info-box" style="margin-top:10px;">
+        <p><strong>Camera Usage:</strong> It is mandatory to have your cameras turned on throughout the session. This
+          requirement is crucial not only for attendance and engagement but also as a safeguarding measure.</p>
+      </div>
+      <div class="info-box">
+        <p><strong>Professional attire:</strong> Please dress appropriately for the sessions. Full top attire is
+          required, and it should reflect the professional nature of our course. This helps set a tone of respect and
+          seriousness towards our learning goals.</p>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>6</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 7 – Section 3 cont ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-bottom:14px;">
+      <p><strong>Appropriate Location:</strong> Choose a suitable location for attending the sessions. Attending from a
+        bed or similarly informal setting is not appropriate. If you're concerned about privacy or background
+        distractions, you are encouraged to use a neutral background or an appropriate virtual filter. The student who
+        exhibits inappropriate behaviour or breaches the contract will be removed from the webinar session. If there is
+        a shortage of attendance. You will be asked to attend a physical practical session, which is payable.</p>
+    </div>
+
+    <ul class="sub-list">
+      <li><span><strong>3.1.2.</strong> Complete and submit all coursework required for the programme of study by
+          published deadlines or inform an Assessment Officer where a situation arises that prevents you from doing so
+          in accordance with Welfare Academy's regulations.</span></li>
+      <li><span><strong>3.1.3.</strong> Provide Welfare Academy with an emergency contact name and details which may be
+          used by Welfare Academy at its discretion, and promptly update Welfare Academy of any changes to these contact
+          details.</span></li>
+      <li><span><strong>3.1.4.</strong> Notify Welfare Academy promptly of any changes to the information which you
+          submitted on application or enrolment; for example, if you change your correspondence address.</span></li>
+      <li><span><strong>3.1.5.</strong> Familiarise yourself with and agree to abide by all rules, regulations, and
+          policies, and codes of conduct of Welfare Academy, and those of any Validating University that you are
+          enrolled with through Welfare Academy. These will be made available on the Student Portal.</span></li>
+      <li><span><strong>3.1.6.</strong> Comply with any professional standards, if applicable, in relation to the</span>
+      </li>
+    </ul>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>7</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 8 – Section 3 cont ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>Course.</p>
+
+    <ul class="sub-list" style="margin-top:10px;">
+      <li><span><strong>3.1.7.</strong> Behave appropriately whilst on Welfare Academy premises, cooperate with all the
+          efforts of Welfare Academy to comply with its Health and Safety obligations and comply with the Student Code
+          of Conduct set out in the Student Handbook, in the Student Code of Conduct &amp; Disciplinary Procedures, and
+          available on the Student Portal.</span></li>
+      <li><span><strong>3.1.8.</strong> Carry your Welfare Academy-issued Student Identification Card ("ID Card") with
+          you at all times whilst on Welfare Academy premises or engaged in Welfare Academy activities and present it to
+          authorised Welfare Academy staff if requested to do so and do not allow any other person to use this card for
+          any reason whatsoever.</span></li>
+      <li><span><strong>3.1.9.</strong> Comply with any reasonable instructions issued to you from time to time by the
+          Welfare Academy.</span></li>
+      <li><span><strong>3.1.10.</strong> Tell Welfare Academy promptly, and in writing, if you choose to withdraw from
+          Welfare Academy. This should be through writing and phone calls</span></li>
+      <li><span><strong>3.1.11.</strong> For students with limited leave to remain in the UK: You must provide evidence
+          of your continuing leave to remain (i.e. a current Tier 4 or similar visa from another institution/spouse
+          visa, etc. which has not been curtailed), on enrolment and whenever it is requested by Welfare Academy. You
+          must promptly submit to the Welfare Academy copies of any correspondence with the UKVI/the Home Office and to
+          inform the Welfare Academy of any changes</span></li>
+    </ul>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>8</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 9 – Section 4 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>to their immigration status. Welfare Academy may remove you from the course without further notice and refund if
+      you fail to provide these on the dates required, if applicable (24/04/2025)</p>
+
+    <h2 class="numbered" style="margin-top:28px;">4. &nbsp; Fees and Payment</h2>
+
+    <p>Welfare Academy's policy on fees is detailed in full in the Tuition Fee and Refund Policy.</p>
+
+    <div class="clause">
+      <p><span class="cid">4.1.</span> By enrolling in the program, the student must agree to pay all fees associated
+        with their course of study. If the student does not pay the full fee upfront, they must enrol in a direct debit
+        or standing order system. Any breach of the instalment plan (15 calendar days from the agreed standing order)
+        will be continued with a penalty fee of £100 unless properly communicated with Academy through email. Verbal
+        communication through phone or any other means will not be considered.</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">4.2</span> If a student fails to pay their fees within 30 calendar days of the due date, they
+        will be suspended from the course and the file will be forwarded to external agencies for debt collection. Any
+        legal fees will be charged to the candidate. Candidates will also lose access to the course portal and any
+        associated resources until the fees due are cleared. If a student's fees are delayed for 60 days, they will be
+        discontinued from the program. All reminders regarding fees will be communicated through the mail, on discretion
+        of the Academy (24/04/2025)</p>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>9</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 10 – Section 4 cont ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">4.3.</span> Once you receive the enrolment letter from the Welfare Academy, you won't get a
+        refund from the Welfare Academy even if you paid the whole amount of course fees. You can cancel your
+        application before you receive the enrolment letter or before joining the initial class, which comes
+        first.(24/04/2025)</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">4.4.</span> The cancellation fee for the practical sessions is 70 pounds, if you haven't been
+        intimated to Welfare Academy via email within 7 days prior to the date of practical, exempted only on the
+        medical condition with proof to claim.(24/04/2025)</p>
+    </div>
+
+    <h3 class="sub">4.5 Welfare Academy Withdrawal and Fee Policy</h3>
+
+    <h4 class="mini">4.5.1 Withdrawal Notification</h4>
+    <p>If a candidate wishes to withdraw from their course at Welfare Academy, they must notify the Academy promptly, in
+      writing, and via a phone call. Both forms of communication are required to confirm the withdrawal.</p>
+
+    <h4 class="mini">4.5.2. Withdrawal Fees</h4>
+    <p>Candidates withdrawing from the course will be subject to the following fees based on their enrollment status:
+    </p>
+
+    <ul class="bul">
+      <li><span><strong>Pre-Enrollment Withdrawal:</strong> If the candidate withdraws prior to the official enrollment
+          date, a charge of £100 will apply. This fee covers the registration process and any other administrative
+          procedures conducted by Welfare Academy.</span></li>
+      <li>
+        <span>
+          <strong>Post-Enrollment Withdrawal:</strong> Once enrolled in the course, the following fees will apply:
+          <ul class="sub-bul" style="margin-top:6px;">
+            <li><span>First Month: A minimum charge of £300.</span></li>
+            <li><span>Second Month: A charge of £650.</span></li>
+          </ul>
+        </span>
+      </li>
+    </ul>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>10</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 11 – Section 4 cont ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <ul class="sub-bul" style="margin-bottom:14px;">
+      <li><span>Third Month: A charge of £1,000.</span></li>
+      <li><span>Fourth Month: A charge of £1,500.</span></li>
+    </ul>
+
+    <h4 class="mini">4.5.3. Refund Policy</h4>
+    <p>Once enrolled, no refunds will be issued under any circumstances. The fees outlined above will be charged upon
+      withdrawal, and no amount will be refunded after enrollment.</p>
+
+    <h4 class="mini">4.5.4. Unpaid Fees</h4>
+    <p>Failure to pay the applicable withdrawal fees will result in the involvement of debt collection agencies or
+      third-party companies, at the discretion of the Academy. The candidate will be responsible for any fees incurred
+      through the involvement of these third parties.</p>
+
+    <h4 class="mini">4.5.5. Payment Responsibility</h4>
+    <p>Candidates are responsible for all fees associated with their withdrawal from the course, including any
+      additional charges imposed by debt collection agencies or third-party companies.(24/04/2025)</p>
+
+    <div class="clause">
+      <p><span class="cid">4.6.</span> In addition to the charges set out in 4.2 – 4.5. above, Welfare Academy may also
+        take any or all of the following steps if you fail to pay the Course Fees or any instalment of an instalment
+        plan: (24/04/2025)</p>
+      <ul class="bul" style="margin-top:8px;">
+        <li><span>immediately cancel any instalment plan and demand payment of the balance;</span></li>
+        <li><span>suspend access to the library and computing facilities;</span></li>
+        <li><span>not accept or mark the examination scripts and assignments/coursework;</span></li>
+        <li><span>not register the student with the awarding body;</span></li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>11</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 12 – Section 4 cont + Section 5 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <ul class="bul" style="margin-bottom:14px;">
+      <li><span>not submit any unit/module results to the awarding body;</span></li>
+      <li><span>withhold the final Diploma certificate and transcript;</span></li>
+      <li><span>suspend you from the Course;</span></li>
+      <li><span>cancel your enrolment/refuse to re-enrol you, and remove you from the Course;</span></li>
+      <li><span>pass your debt to a third party (e.g. a solicitor or debt collection agency) for collection at your
+          expense.</span></li>
+    </ul>
+
+    <div class="clause">
+      <p><span class="cid">4.6</span> If any student completed the agreed duration of 6 months, which is tutoring time
+        and assessment period, exceptional case of agreed medical reasons will have to pay £20 per module for both
+        knowledge and skills.</p>
+    </div>
+
+    <h2 class="numbered">5. &nbsp; Welfare Academy Submissions and Resubmission Policy <span
+        style="font-size:14px;font-weight:400;color:var(--muted)">(24/04/2025)</span></h2>
+
+    <h3 class="sub">5.1. Timely Submission of Assessments</h3>
+    <ul class="bul">
+      <li><span>After each weekly class, students are required to submit their assessments on the specified day. This is
+          to allow for formative feedback.</span></li>
+      <li><span>Formative feedback will be provided subject to the availability of the teacher.</span></li>
+    </ul>
+
+    <h3 class="sub">5.2. Submission Portal</h3>
+    <ul class="bul">
+      <li><span>Students must submit all academic work on time via Welfare Academy's online portal. Submissions sent via
+          email or any other method will not be accepted.</span></li>
+      <li><span>The final submission date for assessments will be communicated to students via email. It is the
+          student's responsibility to adhere to the final submission date.</span></li>
+    </ul>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>12</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 13 – Section 5 cont ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <h3 class="sub">5.3. Late Submissions</h3>
+    <ul class="bul">
+      <li><span>Any late submissions will be considered as failed and students will need to wait for the next
+          resubmission opportunity.</span></li>
+      <li><span>After the final submission day, students will not be able to submit assessments in the portal until the
+          results are published, unless permission is granted by the academic lecturer.</span></li>
+      <li><span>Any mitigation reasons for late submission must be accompanied by appropriate proof and submitted within
+          10 working days from the submission day or before the deadline.</span></li>
+    </ul>
+
+    <h3 class="sub">5.4. Resubmissions</h3>
+    <ul class="bul">
+      <li><span>Students are allowed to submit assessments multiple times before the final deadline.</span></li>
+      <li><span>For the first three submissions and feedback requests, there will be no charge.</span></li>
+      <li><span>A charge of £20 per module will apply for any submission after the third submission, starting from the
+          fourth submission.</span></li>
+    </ul>
+
+    <h3 class="sub">5.5. Consequences of Excessive Submissions</h3>
+    <ul class="bul">
+      <li><span>Failure to submit assessments on the fourth submission will result in termination from the
+          course.</span></li>
+      <li><span>Students who have reached the maximum of three resubmissions must urgently contact Welfare Academy to
+          avoid further risks of suspension.</span></li>
+    </ul>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>13</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 14 – Section 5 cont + Section 6 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <h3 class="sub">5.6. Communication and Support</h3>
+    <ul class="bul">
+      <li><span>If a student has completed three resubmission periods and continues to access the Welfare Academy
+          portal, they must urgently contact Welfare Academy to discuss their status and avoid suspension.</span></li>
+      <li><span>Students are encouraged to stay in communication with the Academy and inform us promptly if they
+          encounter any issues affecting their ability to meet submission deadlines.</span></li>
+    </ul>
+
+    <h2 class="numbered">6. &nbsp; Rules and Regulations of the Academy</h2>
+
+    <div class="clause">
+      <p><span class="cid">6.1.</span> You are required, as a condition of accepting an Offer, to abide by all relevant
+        codes, rules and regulations of Welfare Academy in existence during the Course which relates to the activities
+        of students at Welfare Academy, or which may apply to you and your particular programme option. These shall
+        include (but shall not be limited to) the following:</p>
+      <ul class="bul" style="margin-top:8px;">
+        <li><span>Welfare Academy's Tuition Fee and Refund Policy;</span></li>
+        <li><span>Welfare Academy's Student Complaints Procedure;</span></li>
+        <li><span>Welfare Academy's Student Code of Conduct and Disciplinary Procedure;</span></li>
+        <li><span>Welfare Academy's Health and Safety Policy;</span></li>
+        <li><span>Welfare Academy's Student Attendance Policy &amp; Procedure;</span></li>
+        <li><span>Welfare Academy's Library Regulations;</span></li>
+        <li><span>Welfare Academy's Preventing Extremism and Radicalisation Policy</span></li>
+        <li><span>All programme handbooks, codes, rules and regulations of any other relevant</span></li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>14</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 15 – Section 6 cont + Section 7 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>organization or institution, if required as part of the Course, as such codes, rules and regulations are amended
+      from time to time.</p>
+
+    <div class="clause">
+      <p><span class="cid">6.2.</span> If you are removed from your Course with Welfare Academy because of disciplinary
+        action taken against you in accordance with the disciplinary procedures of Welfare Academy, these Terms shall
+        end automatically without the need for any notice, unless Welfare Academy agrees otherwise in writing.</p>
+    </div>
+
+    <h2 class="numbered">7. &nbsp; Change of Circumstances</h2>
+
+    <div class="clause">
+      <p><span class="cid">7.1.</span> In addition to Welfare Academy's right to end the contract in accordance with
+        Condition 5.2 above, Welfare Academy is entitled to end the contract immediately by notice in writing to you in
+        the following circumstances:</p>
+      <ul class="sub-list" style="margin-top:10px;">
+        <li><span><strong>7.1.1.</strong> If there is a change in your circumstances between the acceptance of an Offer
+            by you and the beginning of the Course or if Welfare Academy becomes aware of information relating to you
+            not previously known to it (including, but not limited to, information about criminal convictions, subject
+            to the Rehabilitation of Offenders Act 1974) which in the reasonable opinion of Welfare Academy makes it
+            inappropriate for you to study on the Course; or</span></li>
+        <li><span><strong>7.1.2.</strong> If you fail to notify Welfare Academy immediately of any convictions or
+            changes in your status with the Disclosure and Barring Service that occur whilst you are registered as a
+            student at Welfare Academy; or</span></li>
+        <li><span><strong>7.1.3.</strong> If, in the reasonable opinion of Welfare Academy, you have failed to provide
+            Welfare Academy with all relevant information which could affect your acceptance of the Course or have
+            supplied false or misleading information relating to your application for the Course.</span></li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>15</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 16 – Section 8 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <h2 class="numbered">8. &nbsp; Provision of the Course</h2>
+
+    <div class="clause">
+      <p><span class="cid">8.1.</span> While Welfare Academy undertakes to take all reasonable steps to provide the
+        Course and services with reasonable care and skill, should circumstances beyond the control of Welfare Academy
+        interfere with its ability to provide the Course or the Services, Welfare Academy undertakes to take all
+        reasonable steps to minimise the resultant disruption to the Course and the Services.</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">8.2.</span> Welfare Academy will use all reasonable endeavours to deliver the Course in
+        accordance with the description applied to it in Welfare Academy's marketing and promotional materials (e.g.
+        website entries or prospectus) for the academic year in which you begin the Course. However, Welfare Academy has
+        limited resources which it has to manage in an efficient way, in the context of the provision of a wide range of
+        courses to many students. Welfare Academy therefore shall be entitled:</p>
+      <ul class="sub-list" style="margin-top:10px;">
+        <li><span><strong>8.2.1.</strong> at any time to alter the timetable applicable to you, to alter the number of
+            classes relating to the Course, alter the methods by which the Course is delivered and to alter the location
+            of delivery of the Course, such changes are not to be considered substantial unless they would alter the
+            study mode, academic classification, or eligibility for benefits, immigration status or Council tax credit
+            purposes of the course;</span></li>
+        <li><span><strong>8.2.2.</strong> To make reasonable variations to the content and syllabus of the Course, such
+            changes not to be considered substantial, to make changes required in order to comply with any changes in
+            the law, changes required in order to comply with the Welfare Academy's accrediting bodies, update course
+            material in order to reflect best practice and academic development;</span></li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>16</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 17 – Section 8 cont ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <ul class="sub-list" style="margin-bottom:14px;">
+      <li><span><strong>8.2.3.</strong> To discontinue the Course or decide not to provide the Course or to merge or
+          combine the Course with other programmes of study. If Welfare Academy decides not to provide the Course or
+          makes any substantial variation to the Course prior to the Course then it will use reasonable endeavours to
+          notify you in advance.</span></li>
+      <li><span><strong>8.2.4.</strong> Welfare Academy is not liable to provide a refund if substantial changes are
+          made because of decisions made by an accrediting body or to comply with changes in law or industry
+          practice.</span></li>
+    </ul>
+
+    <div class="clause">
+      <p><span class="cid">8.3.</span> Welfare Academy does not accept responsibility, and expressly excludes liability,
+        for:</p>
+      <ul class="sub-list" style="margin-top:8px;">
+        <li><span><strong>8.3.1.</strong> any indirect or consequential loss or damage (including, without limitation,
+            loss of profit, loss of earnings, loss of opportunity, and living expenses), however arising, suffered by
+            you because of any breach by Welfare Academy of these terms &amp; conditions or any other act or omission of
+            Welfare Academy or its employees or agents.</span></li>
+        <li><span><strong>8.3.2.</strong> Welfare Academy shall not be held responsible for any loss, damage or expense
+            resulting from any delay, variation, or failure in the provision of the Services or facilities relating to
+            any programme or course arising from circumstances beyond Welfare Academy's reasonable control.</span></li>
+        <li><span><strong>8.3.3.</strong> Although Welfare Academy shall endeavour to ensure that computer equipment and
+            software it makes available for your use has reasonable security and anti-virus facilities and protections,
+            your use of such computer equipment and any software provided by Welfare Academy is at your own risk.
+            Welfare</span></li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>17</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 18 – Section 8 cont + Section 9 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>Academy shall not, therefore, be liable for any loss or damage suffered by you because of the use of any computer
+      equipment or software provided or made available by Welfare Academy to you, including (but without limiting the
+      general nature of this condition) any contamination of software or loss of files as a result of using Welfare
+      Academy equipment or software.</p>
+
+    <ul class="sub-list" style="margin-top:10px; margin-bottom:14px;">
+      <li><span><strong>8.3.4.</strong> If Welfare Academy is found liable to you for any breach by Welfare Academy of
+          these terms and conditions the liability of Welfare Academy shall be limited to a refund of the Course Fees
+          actually paid by you.</span></li>
+      <li><span><strong>8.3.5.</strong> Nothing in Condition 7 or in the rest of these Terms shall operate to exclude
+          Welfare Academy's liability for death or personal injury caused by Welfare Academy's negligence, or for
+          fraudulent misrepresentations.</span></li>
+    </ul>
+
+    <h2 class="numbered">9. &nbsp; Requirements for Course Termination</h2>
+
+    <div class="clause">
+      <p><span class="cid">9.1.</span> If at any time you or Welfare Academy end this contract because of its rights
+        under these Terms or generally or if these Terms end automatically:</p>
+      <ul class="sub-list" style="margin-top:8px;">
+        <li><span><strong>9.1.1.</strong> Welfare Academy shall be entitled to refuse to enrol you on the Course if at
+            the date of termination you have not already enrolled;</span></li>
+        <li><span><strong>9.1.2.</strong> Welfare Academy shall be entitled to require you to stop studying on the
+            Course and to leave Welfare Academy immediately if at the date of termination, you have already
+            enrolled;</span></li>
+        <li><span><strong>9.1.3.</strong> any action taken by Welfare Academy under Conditions 8.1.1 or 8.1.2 will not
+            restrict the ability of Welfare Academy to take any other action against you</span></li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>18</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 19 – Sections 9 cont / 10 / 11 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>to which it may be entitled;</p>
+
+    <ul class="sub-list" style="margin-top:10px; margin-bottom:14px;">
+      <li><span><strong>9.1.4.</strong> Welfare Academy will not be liable for any loss or damage of whatever nature
+          which you may suffer as a result of any action taken against you by Welfare Academy to terminate these Terms
+          or disciplinary action by Welfare Academy (provided the action by Welfare Academy is taken properly in
+          accordance with these Terms or Welfare Academy's procedures);</span></li>
+      <li><span><strong>9.1.5.</strong> you are required to return the Student Identification Card, which was issued to
+          you on enrolment, and any special equipment provided by the Academy for use on your Course; and</span></li>
+      <li><span><strong>9.1.6.</strong> Any Instalment payment facility in respect of the Course will terminate
+          automatically and the full balance of outstanding Course Fees will become due immediately.</span></li>
+    </ul>
+
+    <h2 class="numbered">10. &nbsp; Special Conditions</h2>
+
+    <div class="clause">
+      <p><span class="cid">10.1.</span> You agree that you will abide by any special conditions relating to the Course
+        set out in the Offer, DBS checking agreement, testimonial form, or any other supplementary contract agreed
+        between you and Welfare Academy, and these shall be incorporated in this contract.</p>
+    </div>
+
+    <h2 class="numbered">11. &nbsp; Data Protection Policy</h2>
+
+    <div class="clause">
+      <p><span class="cid">11.1.</span> Welfare Academy may use and process personal data or information regarding</p>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>19</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 20 – Section 11 cont + Section 12 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>you (including Special Category Data e.g. ethnicity, gender, and health data; and Criminal Offence data e.g. DBS
+      checks) while you are a student of Welfare Academy and after you have left Welfare Academy as set out in its
+      Privacy Notice, for the purposes set out in that Notice. Any data Welfare Academy holds will be administered in
+      terms of the Data Protection Act 2018 in line with the General Data Protection Regulations as well as the Welfare
+      Academy Data Protection Policy.</p>
+
+    <h2 class="numbered">12. &nbsp; Intellectual Property</h2>
+
+    <div class="clause">
+      <p><span class="cid">12.1.</span> Welfare Academy brands and trademarks are owned and licensed by Welfare Academy.
+        The awarding bodies' brands and trademarks are owned and licensed by the awarding bodies.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">12.2.</span> Copyright in your course material and all other material on our website belong
+        to us.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">12.3.</span> No part of our website or your course material may be copied, reproduced, or
+        republished in any form or by any means, without obtaining our prior written permission. We reserve the right to
+        bring legal action against you if you breach this obligation.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">12.4.</span> By entering these terms and conditions you agree that the copyright in any
+        images of you used on our marketing materials and website will belong to us.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">12.5.</span> You will own the copyright and other intellectual property rights vesting in
+        content created by you in the course of and for the purpose of your studies with Welfare Academy, except content
+        created:-</p>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>20</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 21 – Section 12 cont + Section 13 ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <ul class="sub-list" style="margin-bottom:14px;">
+      <li><span><strong>12.5.1.</strong> On courses that are part of an ongoing research program (and this fact has been
+          stated in the Offer);</span></li>
+      <li><span><strong>12.5.2.</strong> on or for a work placement;</span></li>
+      <li><span><strong>12.5.3.</strong> promotional materials created for Welfare Academy such as those produced under
+          12.4 above.</span></li>
+    </ul>
+
+    <div class="clause">
+      <p><span class="cid">12.6.</span> You agree to grant Welfare Academy an irrevocable, worldwide, royalty-free,
+        non-exclusive license to use, copy, edit, and distribute any material in which your intellectual property rights
+        such as copyright may subsist, for academic, promotional, and other non-commercial purposes. You agree to
+        execute any deed, assignment, or other documents necessary to affect such a license on request by us.</p>
+    </div>
+
+    <h2 class="numbered">13. &nbsp; General Conditions</h2>
+
+    <div class="clause">
+      <p><span class="cid">13.1.</span> If any provision of these Terms is or becomes illegal, invalid, void, or
+        unenforceable that shall not affect the legality, validity or enforceability of the other provisions.</p>
+    </div>
+
+    <div class="clause">
+      <p><span class="cid">13.2.</span> Any notice or other communication made under these Terms shall be in writing
+        (including by email) and addressed to you at the last address notified by you to Welfare Academy and/or sent to
+        your Welfare Academy email account, and shall be deemed to have been properly served:- • if delivered by hand
+        when left at that address;</p>
+      <p>• if sent by email, on the day on which it was sent, or if not a business day, the next business day
+        thereafter;</p>
+      <p>• if made by pre-paid first-class post, on the second business day after being posted</p>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>21</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 22 – Section 13 cont ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <p>to that address.</p>
+
+    <div class="clause">
+      <p><span class="cid">13.3.</span> If you breach these Terms and Welfare Academy chooses not to exercise any right
+        which it may have against you, that shall not prevent Welfare Academy from acting against you in the future in
+        respect of that breach or any further breaches by you.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">13.4.</span> These Terms are only enforceable by you and Welfare Academy. No other person
+        shall have any rights in connection with these Terms.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">13.5.</span> Welfare Academy shall not be liable for any loss, theft, misuse, or damage to
+        your property while on Welfare Academy premises nor any injury or death not occasioned by the gross negligence
+        of Welfare Academy, its office bearers, employees or agents.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">13.6.</span> Only you and Welfare Academy are parties to this agreement. No other person or
+        institution shall have rights under the Contracts (Rights of Third Parties) Act 1999 to enforce the terms of
+        this agreement.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">13.7.</span> Failure by you or Welfare Academy to enforce any breach of any terms of this
+        contract shall not constitute a waiver of the said provision and further shall not prevent Welfare Academy from
+        taking steps to enforce that or any other provision.</p>
+    </div>
+    <div class="clause">
+      <p><span class="cid">13.8.</span> These Conditions shall be governed by and construed in all respects in
+        accordance with the laws of England and Wales and are subject to the exclusive jurisdiction of the English
+        courts.</p>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>22</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 23 – STUDENT FORM ═══════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <div class="header-logo">
+        <img src="/welfare-logo.png" alt="Welfare Academy Logo" style="height: 50px; object-fit: contain; margin-right: 15px;" />
+      </div>
+    </div>
+
+    <h2 class="section">To Be Filled By The Students</h2>
+
+    <table class="pay-table">
+      <thead>
+        <tr>
+          <th>PAYMENT PLAN</th>
+          <th class="check-col">PLAN SELECTED<br><span style="font-weight:400;font-size:11px;">(Select the chosen
+              plan)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Plan I – One-Time Payment</strong><br>
+            £1500
+          </td>
+          <td class="check-col">{{CHECK_PLAN_I}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Plan II – 3 months</strong><br>
+            £500 * 3
+          </td>
+          <td class="check-col">{{CHECK_PLAN_II}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Plan III – 5 Months</strong><br>
+            £300 * 5
+          </td>
+          <td class="check-col">{{CHECK_PLAN_III}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box" style="margin-top: 20px;">
+      <p><strong>Other Payment Plan Details</strong></p>
+      <p>Plan Name: {{OTHER_PLAN_NAME}}</p>
+      <p>Initial payment amount: {{OTHER_INITIAL}}</p>
+      <p>Second installment amount: {{OTHER_SECOND}}</p>
+      <p>Number of installments planned: {{OTHER_INSTALLMENTS}}</p>
+    </div>
+
+    <p>Please indicate your acceptance of these terms and conditions by signature in the appropriate space below.
+
+            <strong>Other Payment Plans:</strong><br>
+            <span class="other-field">(If yes, please specify the agreed payment plan)</span>
+            <br>
+            <span class="field-label">Initial Payment Amount:</span> £ ___________<br>
+            <span class="field-label">Amount from Second Instalment:</span> £ ___________<br>
+            <span class="field-label">No. of Instalments:</span> ___________
+          </td>
+          <td class="check-col"><span class="checkbox"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:20px;">Please indicate your acceptance of these terms and conditions by signature in the
+      appropriate space below.</p>
+
+    <div class="sig-block">
+      <div class="sig-row">
+        <div class="sig-field">
+          <label>Signature:</label>
+          <div class="sig-line" style="min-height:54px; display:flex; align-items:center; justify-content:center;">{{SIGNATURE}}</div>
+        </div>
+        <div class="sig-field">
+          <label>Date:</label>
+          <div class="sig-line">{{DATE}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Welfare Academy_ NCFE Cache- Level 3 Diploma in Adult Care</span>
+      <span>23</span>
+    </div>
+  </div>
+
+</body>
+
+</html>
