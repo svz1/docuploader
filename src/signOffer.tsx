@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import SignaturePad from "signature_pad";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,9 @@ function SignOffer() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [progressText, setProgressText] = useState("");
   const [paymentPlan, setPaymentPlan] = useState("");
+  const [signatureError, setSignatureError] = useState<string | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const signaturePadRef = useRef<SignaturePad | null>(null);
   const [otherPlanName, setOtherPlanName] = useState("");
   const [otherInitialPayment, setOtherInitialPayment] = useState("");
   const [otherSecondInstallment, setOtherSecondInstallment] = useState("");
@@ -39,15 +43,62 @@ function SignOffer() {
     loadStudent();
   }, [studentId]);
 
-  const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSignatureDataUrl(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const signaturePad = new SignaturePad(canvas, {
+      backgroundColor: "rgba(255,255,255,0)",
+      penColor: "#000",
+      minWidth: 1,
+      maxWidth: 2.5,
+    });
+
+    // You can save the drawn signature on-demand using "Save Signature" button.
+
+    signaturePadRef.current = signaturePad;
+
+    const resizeCanvas = () => {
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      canvas.width = width * ratio;
+      canvas.height = height * ratio;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        ctx.scale(ratio, ratio);
+      }
+      signaturePad.clear();
+      if (signatureDataUrl) {
+        signaturePad.fromDataURL(signatureDataUrl);
+      }
+    };
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      signaturePad.clear();
+      signaturePadRef.current = null;
+    };
+
+  }, []);
+
+  const clearSignature = () => {
+    signaturePadRef.current?.clear();
+    setSignatureDataUrl(null);
+    setSignatureError(null);
+  };
+
+  const saveSignature = () => {
+    const pad = signaturePadRef.current;
+    if (!pad || pad.isEmpty()) {
+      setSignatureError("Please sign in the box before accepting.");
+      return;
     }
+    setSignatureDataUrl(pad.toDataURL("image/png"));
+    setSignatureError(null);
   };
 
   const generatePDF = async () => {
@@ -106,7 +157,7 @@ if (!studentId) return;
         return;
       }
       if (!signatureDataUrl) {
-        alert("Please upload your signature before accepting.");
+        alert("Please sign in the canvas area before accepting.");
         return;
       }
 
@@ -285,12 +336,25 @@ if (!studentId) return;
         </div>
 
         <div className="form-group sign-offer-upload">
-          <label className="sign-offer-label">Upload Signature Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleSignatureUpload}
-          />
+          <label className="sign-offer-label">Draw Your Signature</label>
+          <div style={{ border: '1px solid #d1d5db', borderRadius: '8px', padding: '0.25rem', background: '#fff', maxWidth: '400px' }}>
+            <canvas
+              ref={canvasRef}
+              style={{ width: '100%', height: '200px', touchAction: 'none', cursor: 'crosshair', borderRadius: '6px' }}
+            />
+          </div>
+          {signatureError && <div style={{ color: '#b91c1c', marginTop: '0.35rem' }}>{signatureError}</div>}
+          <div style={{ marginTop: '0.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <button type="button" onClick={() => { saveSignature(); }} className="sign-offer-btn" style={{ minWidth: '120px' }}>
+              Save Signature
+            </button>
+            <button type="button" onClick={clearSignature} className="sign-offer-btn" style={{ minWidth: '120px' }}>
+              Clear
+            </button>
+            <span style={{ alignSelf: 'center', color: '#6b7280', fontSize: '0.85rem' }}>
+              {signatureDataUrl ? 'Signature captured ✓' : 'Sign above and click Save Signature'}
+            </span>
+          </div>
         </div>
         <button type="submit" disabled={isGenerating} className={`sign-offer-btn ${isGenerating ? 'sign-offer-btn-generating' : ''}`}>
           {isGenerating ? "Generating Document..." : "Accept & Download Offer"}
