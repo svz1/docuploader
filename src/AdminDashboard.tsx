@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { db } from "./firebase";
 import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { add } from "firebase/firestore/pipelines";
 
 function AdminDashboard() {
 
@@ -19,7 +20,8 @@ function AdminDashboard() {
       documents: {
         photo: false,
         resume: false,
-        idProof: false
+        idProof: false,
+        addressProof: false
       },
       offerSigned: false
     });
@@ -93,6 +95,7 @@ function AdminDashboard() {
                 <th>Photo</th>
                 <th>Resume</th>
                 <th>ID Proof</th>
+                <th>Address Proof </th>
                 <th>Offer Status</th>
                 <th>Actions</th>
               </tr>
@@ -126,6 +129,15 @@ function AdminDashboard() {
 
                   <td>
                     {student.documents?.idProof
+                      ? <div className="status-cell">
+                        <span className="badge badge-green">Submitted</span>
+                        <button className="admin-download-btn">Download</button>
+                      </div>
+                      : <span className="badge badge-gray">Pending</span>}
+                  </td>
+
+                  <td>
+                    {student.documents?.addressProof
                       ? <div className="status-cell">
                         <span className="badge badge-green">Submitted</span>
                         <button className="admin-download-btn">Download</button>

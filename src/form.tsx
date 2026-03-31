@@ -15,6 +15,7 @@ function Form() {
   const [photo, setPhoto] = useState(false);
   const [resume, setResume] = useState(false);
   const [idProof, setIdProof] = useState(false);
+  const [addressProof, setAddressProof] = useState(false);
 
   useEffect(() => {
 
@@ -35,6 +36,7 @@ function Form() {
           setPhoto(data.documents.photo || false);
           setResume(data.documents.resume || false);
           setIdProof(data.documents.idProof || false);
+          setAddressProof(data.documents.addressProof || false);
         }
 
       }
@@ -57,7 +59,8 @@ function Form() {
       documents: {
         photo,
         resume,
-        idProof
+        idProof,
+        addressProof  
       }
     });
 
@@ -113,6 +116,14 @@ function Form() {
               <input
                 type="file"
                 onChange={(e) => setIdProof(!!e.target.files?.[0])}
+              />
+            </div>
+
+            <div className="form-doc-card">
+              <div className="form-doc-title">Address Proof</div>
+              <input
+                type="file"
+                onChange={(e) => setAddressProof(!!e.target.files?.[0])}
               />
             </div>
           </div>
