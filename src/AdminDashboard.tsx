@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { db } from "./firebase";
 import { collection, addDoc, onSnapshot } from "firebase/firestore";
-import { add } from "firebase/firestore/pipelines";
+
 
 function AdminDashboard() {
 
