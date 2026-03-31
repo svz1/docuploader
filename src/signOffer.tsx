@@ -7,6 +7,21 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import letterHtmlTemplate from './letter.html?raw';
 
+const parseOfferLetterTemplate = (template: string) => {
+  const styleMatch = template.match(/<style[^>]*>[\s\S]*?<\/style>/i);
+  const bodyMatch = template.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+
+  const styleContent = styleMatch ? styleMatch[0] : "";
+  const bodyContent = bodyMatch ? bodyMatch[1] : template;
+
+  return {
+    styleContent,
+    bodyContent,
+  };
+};
+
+const { styleContent: letterStyle, bodyContent: letterBody } = parseOfferLetterTemplate(letterHtmlTemplate);
+
 function SignOffer() {
   const navigate = useNavigate();
   const params = new URLSearchParams(window.location.search);
@@ -83,7 +98,7 @@ function SignOffer() {
       signaturePadRef.current = null;
     };
 
-  }, []);
+  }, [signatureDataUrl]);
 
   const clearSignature = () => {
     signaturePadRef.current?.clear();
@@ -110,29 +125,29 @@ function SignOffer() {
     element.style.maxHeight = 'none';
     element.style.overflowY = 'visible';
 
-
     await new Promise(resolve => setTimeout(resolve, 100));
 
     try {
-      const canvas = await html2canvas(element, { scale: 2 });
-      const imgData = canvas.toDataURL("image/png");
-      
+      const pageElements = Array.from(element.querySelectorAll('.page')) as HTMLElement[];
       const pdf = new jsPDF("p", "mm", "a4");
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgHeight = (canvas.height * pdfWidth) / canvas.width;
-      
-      let heightLeft = imgHeight;
-      let position = 0;
 
-      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
-      heightLeft -= pageHeight;
+      if (!pageElements.length) {
+        const canvas = await html2canvas(element, { scale: 2, backgroundColor: '#fff' });
+        const imgData = canvas.toDataURL("image/png");
+        const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
+        return pdf;
+      }
 
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight; // shift image up for next page
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
-        heightLeft -= pageHeight;
+      for (let i = 0; i < pageElements.length; i++) {
+        const pageEl = pageElements[i];
+        const canvas = await html2canvas(pageEl, { scale: 2, backgroundColor: '#fff' });
+        const imgData = canvas.toDataURL("image/png");
+        const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        if (i > 0) pdf.addPage();
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
       }
 
       return pdf;
@@ -192,7 +207,7 @@ if (!studentId) return;
 
   const checkMark = `<span style="display:inline-flex;align-items:center;justify-content:center;width:100%;height:100%;font-weight:bold;color:#1a2a4a;">✔</span>`;
   
-  const finalHtml = letterHtmlTemplate
+  const finalHtml = (letterStyle + letterBody)
     .replace(/\{\{NAME\}\}/g, name || "Jenson Thomas")
     .replace(/\{\{DATE\}\}/g, currentDate)
     .replace(/\{\{PAYMENT_PLAN\}\}/g, paymentPlan === "Other" ? (otherPlanName || "Other payment plan") : paymentPlan)

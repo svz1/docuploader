@@ -38,7 +38,8 @@
 
     /* ── Page container ── */
     .page {
-      width: var(--page-width);
+      width: min(var(--page-width), 100%);
+      max-width: var(--page-width);
       min-height: var(--page-height);
       background: #fff;
       margin: 0 auto 28px auto;
